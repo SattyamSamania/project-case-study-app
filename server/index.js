@@ -5,6 +5,10 @@ const bodyParser = require('body-parser')
 // import database 
 const database = require('./database')
 
+// importing routes 
+const noteRouter = require('./routes/note-routes')
+
+
 
 // dotenv config 
 require('dotenv').config();
@@ -23,6 +27,8 @@ app.use(bodyParser.json());
 
 //DB Connection 
 database.on('error', console.error.bind(console, 'MongoDB failed to connect'))
+
+app.use('/', noteRouter);
 
 app.get('/', (req, res) => {
     res.send("Project Case Study App");
